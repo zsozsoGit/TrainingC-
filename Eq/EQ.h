@@ -1,10 +1,16 @@
 #pragma once
 #include <iostream>
 #include <map>
+#include <vector>
 using namespace std;
 class Eq {
+public:
+	class Exp;
+	using Row = pair<Exp, double>;
 private:
 	int varnum;
+	vector<Row> rows;
+
 public:
 	class Var
 	{
@@ -14,7 +20,7 @@ public:
 		Var(int idx) : idx(idx) {};
 		int getIndex() const { return idx; }
 	};
-
+	//class Row : public pair<Exp, double> {};
 	Eq() :varnum(0) {};
 	Var getVar() { return Var(varnum++); }
 
@@ -40,6 +46,22 @@ public:
 			cout << endl;
 		}
 	};
+
+	
+
+	Row addEq(const Exp &e, double d = 0) {
+		Row r = pair<Exp,double>(e, d);
+		rows.push_back(r);
+		return r;
+
+	}
+
+	void solve() {
+		for (const auto &x : rows) {
+			x.first.print();
+			cout << " =  " << x.second << "\n";
+		}
+	}
 };
 
 Eq::Exp operator*(double d, const Eq::Var &v) {

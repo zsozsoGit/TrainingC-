@@ -15,14 +15,15 @@ int main() {
 	e += y;
 	e += x;
 	e += 3 * z;
-	e += z*3;
+	eq.addEq(e, 4);
+	//e += z*3;
 	//Eq::Row r = eq.getRow();
 
 	//Eq::Exp e;
 
 	//e + x + 2*y;
 	//r.set(e, 12);
-	//eq.solve();
+	eq.solve();
 	e.print();
 	system("pause");
 	return 0;
